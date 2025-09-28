@@ -10,13 +10,20 @@ typedef struct {
     int age;
 } Student;
 
+void clear() {
+    #ifdef _WIN32
+        system("cls");
+    #else 
+        system("clear");
+    #endif
+}
+
 int main() {
     int opcao;
     
     do {
         printf("\n\n\n------------------------------\n");
         printf("Sistema de controle de alunos:\n");
-        printf("Menu:\n");
         printf("1 - Cadastrar novo aluno\n");
         printf("2 - Listar todos alunos\n");
         printf("3 - Buscar aluno pelo RA\n");
@@ -25,7 +32,7 @@ int main() {
         printf("6 - Excluir um aluno pelo RA\n");
         printf("7 - Sair\n:");
         scanf("%d", &opcao);
-
+        clear();
         switch(opcao) {
             case 1:
                 printf("\n #Cadastro de novo aluno");
