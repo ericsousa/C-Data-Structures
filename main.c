@@ -14,12 +14,12 @@ typedef struct {
 } Student;
 
 /**
- * @brief Clears the terminal/console screen in a cross-platform manner
+ * Clears the terminal/console screen in a cross-platform manner
  */
 void clear();
 
 /**
- * @brief Creates a new student record by prompting the user for input and storing it in the students array.
+ * Creates a new student record by prompting the user for input and storing it in the students array.
  * 
  * @param students Pointer to the array of Student structures where the new student will be stored
  * @param v_position Pointer to the current position/index in the students array, incremented after insertion
@@ -32,7 +32,7 @@ void clear();
 Student createStudent(Student *students, int *v_position);
 
 /**
- * @brief Displays all information about a student including personal details and academic data.
+ * Displays all information about a student including personal details and academic data.
  * Calculates and shows the average of all grades.
  * 
  * @param student The Student structure containing all student information to display
@@ -41,7 +41,7 @@ void displayStudent(Student student);
 
 
 /**
- * @brief Displays all students in the array up to the specified position.
+ * Displays all students in the array up to the specified position.
  * 
  * @param students Array of Student structures
  * @param v_position Number of students to display (valid positions)
@@ -49,7 +49,7 @@ void displayStudent(Student student);
 void listAllStudents(Student *students, int v_position);
 
 /**
- * @brief Retrieves a student from the array by their ID
+ * Retrieves a student from the array by their ID
  * 
  * @param id The ID of the student to search for
  * @param students Pointer to the array of Student structures
