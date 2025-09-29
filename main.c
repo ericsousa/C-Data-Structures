@@ -32,14 +32,21 @@ void clear();
 Student createStudent(Student *students, int *v_position);
 
 /**
- * Displays all information about a student including personal details and academic data.
+ * @brief Displays all information about a student including personal details and academic data.
  * Calculates and shows the average of all grades.
  * 
  * @param student The Student structure containing all student information to display
  */
-
 void displayStudent(Student student);
 
+
+/**
+ * @brief Displays all students in the array up to the specified position.
+ * 
+ * @param students Array of Student structures
+ * @param v_position Number of students to display (valid positions)
+ */
+void listAllStudents(Student *students, int v_position);
 
 int main() {
     int option; 
@@ -61,12 +68,15 @@ int main() {
         switch(option) {
             case 1:
                 if (v_position < MAX_STUDENTS) {
-                    printf("\n#Cadastro de novo aluno");
+                    printf("\n#Cadastro de novo aluno\n");
                     Student new_student = createStudent(&students, &v_position);
                     displayStudent(new_student);
                 } else printf("\nNao a espaco para cadastrar novos alunos");
                 break;
             case 2:
+                printf("\n#Lista todos alunos\n");
+                listAllStudents(students, v_position);
+                break;
             case 3:
             case 4:
             case 5:
@@ -131,3 +141,10 @@ void displayStudent(Student student) {
     printf("\nAno de inicio: %d", student.enrollmentYear);
     printf("\nIdade: %d", student.age);
 }
+
+void listAllStudents(Student *students, int v_position) {
+    for (int i = 0; i < v_position; i++) {
+        displayStudent(students[i]);
+    }
+}
+
