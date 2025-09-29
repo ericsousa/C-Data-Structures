@@ -88,9 +88,9 @@ Student createStudent(Student *students, int *v_position) {
     printf("RA: ");
     scanf(" %d", &students[*v_position].id);
     printf("Nome: ");
-    scanf(" %[^\n]%*c", &students[*v_position].name);
+    scanf(" %[^\n]%*c", students[*v_position].name);
     printf("Curso: ");
-    scanf(" %[^\n]%*c", &students[*v_position].course);
+    scanf(" %[^\n]%*c", students[*v_position].course);
 
     for (int i = 0; i < NUM_GRADES; i++) {
         printf("Nota %d: ", i+1);
