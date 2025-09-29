@@ -31,6 +31,15 @@ void clear();
  */
 Student createStudent(Student *students, int *v_position);
 
+/**
+ * Displays all information about a student including personal details and academic data.
+ * Calculates and shows the average of all grades.
+ * 
+ * @param student The Student structure containing all student information to display
+ */
+
+void displayStudent(Student student);
+
 
 int main() {
     int option; 
@@ -54,6 +63,7 @@ int main() {
                 if (v_position < MAX_STUDENTS) {
                     printf("\n#Cadastro de novo aluno");
                     Student new_student = createStudent(&students, &v_position);
+                    displayStudent(new_student);
                 } else printf("\nNao a espaco para cadastrar novos alunos");
                 break;
             case 2:
@@ -84,7 +94,7 @@ void clear() {
 }
 
 Student createStudent(Student *students, int *v_position) {
-    printf("Cadastrar novo aluno\n");
+
     printf("RA: ");
     scanf(" %d", &students[*v_position].id);
     printf("Nome: ");
@@ -104,6 +114,20 @@ Student createStudent(Student *students, int *v_position) {
 
     (*v_position)++; // increment the value of v_position variable
 
-    printf("\nAluno cadastrado com sucesso");
+    printf("\nAluno cadastrado com sucesso\n");
     return students[*v_position-1]; 
+}
+
+void displayStudent(Student student) {
+    printf("\nRA: %d", student.id);
+    printf("\nNome: %s", student.name);
+    printf("\nCurso: %s", student.course);
+    float media = 0;
+    for (int i = 0; i < NUM_GRADES; i++) {
+        media += student.grades[i];
+        printf("\nNota %d: %.1f", i+1, student.grades[i]);
+    }
+    printf("\nMedia das  notas: %.1f", media/NUM_GRADES);
+    printf("\nAno de inicio: %d", student.enrollmentYear);
+    printf("\nIdade: %d", student.age);
 }
