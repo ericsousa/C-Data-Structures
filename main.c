@@ -114,6 +114,9 @@ int main() {
             case 5:
             case 6:
             case 7:
+                printf("Saindo...");
+                return 0;
+                break;
             case 8:
                 printf("\n#Test data generated\n");
                 generateTestData(students, &v_position);
