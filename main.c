@@ -18,9 +18,25 @@ typedef struct {
  */
 void clear();
 
+/**
+ * @brief Creates a new student record by prompting the user for input and storing it in the students array.
+ * 
+ * @param students Pointer to the array of Student structures where the new student will be stored
+ * @param v_position Pointer to the current position/index in the students array, incremented after insertion
+ * 
+ * @return The newly created Student structure
+ * 
+ * @note This function reads user input for student ID, name, course, grades, enrollment year, and age.
+ *       The v_position is incremented to point to the next available position in the array.
+ */
+Student createStudent(Student *students, int *v_position);
+
+
 int main() {
-    int opcao;
-    
+    int option; 
+    int v_position = 0; // control students vector position
+    Student students[MAX_STUDENTS];
+
     do {
         printf("\n\n\n------------------------------\n");
         printf("Sistema de controle de alunos:\n");
@@ -31,11 +47,14 @@ int main() {
         printf("5 - Exibir a media das medias\n");
         printf("6 - Excluir um aluno pelo RA\n");
         printf("7 - Sair\n:");
-        scanf("%d", &opcao);
+        scanf("%d", &option);
         clear();
-        switch(opcao) {
+        switch(option) {
             case 1:
-                printf("\n #Cadastro de novo aluno");
+                if (v_position < MAX_STUDENTS) {
+                    printf("\n#Cadastro de novo aluno");
+                    Student new_student = createStudent(&students, &v_position);
+                } else printf("\nNao a espaco para cadastrar novos alunos");
                 break;
             case 2:
             case 3:
@@ -49,13 +68,12 @@ int main() {
                 break;
         }
 
-    } while (opcao <= 8); 
+    } while (option <= 8); 
 
 
     printf("C-Data-Structures");
     return 0;
 }
-
 
 void clear() {
     #ifdef _WIN32
@@ -63,4 +81,29 @@ void clear() {
     #else 
         system("clear");
     #endif
+}
+
+Student createStudent(Student *students, int *v_position) {
+    printf("Cadastrar novo aluno\n");
+    printf("RA: ");
+    scanf(" %d", &students[*v_position].id);
+    printf("Nome: ");
+    scanf(" %[^\n]%*c", &students[*v_position].name);
+    printf("Curso: ");
+    scanf(" %[^\n]%*c", &students[*v_position].course);
+
+    for (int i = 0; i < NUM_GRADES; i++) {
+        printf("Nota %d: ", i+1);
+        scanf("%f", &students[*v_position].grades[i]);
+    }
+
+    printf("Ano de inicio: ");
+    scanf("%d", &students[*v_position].enrollmentYear);
+    printf("Idade: ");
+    scanf("%d", &students[*v_position].age);
+
+    (*v_position)++; // increment the value of v_position variable
+
+    printf("\nAluno cadastrado com sucesso");
+    return students[*v_position-1]; 
 }
