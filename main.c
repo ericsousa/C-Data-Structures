@@ -67,6 +67,15 @@ Student getStudentById(int id, Student *students, int v_position);
 */
 void generateTestData(Student *students, int *v_position);
 
+/**
+ * Calculate the average of a student's grades.
+ *
+ * @param student  Student containing NUM_GRADES grades.
+ * @return         Arithmetic mean of the grades as a float.
+ */
+float averageStudentGrade(Student student);
+
+
 int main() {
     int option; 
     int v_position = 0; // control students vector position
@@ -170,12 +179,10 @@ void displayStudent(Student student) {
     printf("\n\nRA: %d", student.id);
     printf("\nNome: %s", student.name);
     printf("\nCurso: %s", student.course);
-    float media = 0;
     for (int i = 0; i < NUM_GRADES; i++) {
-        media += student.grades[i];
         printf("\nNota %d: %.1f", i+1, student.grades[i]);
     }
-    printf("\nMedia das  notas: %.1f", media/NUM_GRADES);
+    printf("\nMedia das  notas: %.1f", averageStudentGrade(student));
     printf("\nAno de inicio: %d", student.enrollmentYear);
     printf("\nIdade: %d", student.age);
 }
@@ -218,5 +225,13 @@ void generateTestData(Student *students, int *v_position) {
     students[(*v_position)++] = student8;
     students[(*v_position)++] = student9;
     students[(*v_position)++] = student10;
+}
+
+float averageStudentGrade(Student student) {
+    float average = 0;
+    for (int i = 0; i < NUM_GRADES; i++) {
+        average += student.grades[i];
+    }
+    return average / NUM_GRADES;
 }
 
