@@ -58,6 +58,15 @@ void listAllStudents(Student *students, int v_position);
  */
 Student getStudentById(int id, Student *students, int v_position);
 
+
+/**
+ * generateTestData - Populate an array of Student with sample records.
+ * @students: Pointer to an array where sample Student entries will be stored.
+ * @v_position: Pointer to an int representing the current insert position; updated as entries are added.
+ *
+*/
+void generateTestData(Student *students, int *v_position);
+
 int main() {
     int option; 
     int v_position = 0; // control students vector position
@@ -106,6 +115,9 @@ int main() {
             case 6:
             case 7:
             case 8:
+                printf("\n#Test data generated\n");
+                generateTestData(students, &v_position);
+                break;
             default:
                 printf("Opcao invalida.");
                 break;
@@ -152,7 +164,7 @@ Student createStudent(Student *students, int *v_position) {
 }
 
 void displayStudent(Student student) {
-    printf("\nRA: %d", student.id);
+    printf("\n\nRA: %d", student.id);
     printf("\nNome: %s", student.name);
     printf("\nCurso: %s", student.course);
     float media = 0;
@@ -179,5 +191,29 @@ Student getStudentById(int id, Student *students, int v_position) {
     // Return a student with id = 0 to indicate not found
     Student notFound = {0};
     return notFound;
+}
+
+void generateTestData(Student *students, int *v_position) {
+    Student student1 = {123, "Joao Silva", "Engenharia", {7.5, 8.0, 6.5, 9.0}, 2020, 20};
+    Student student2 = {456, "Maria Souza", "Medicina", {9.0, 8.5, 9.5, 10.0}, 2019, 22};
+    Student student3 = {789, "Pedro Oliveira", "Direito", {6.0, 7.0, 5.5, 8.0}, 2021, 19};
+    Student student4 = {101, "Ana Costa", "Arquitetura", {8.0, 7.5, 9.0, 8.5}, 2020, 21};
+    Student student5 = {202, "Lucas Lima", "Administracao", {7.0, 6.5, 8.0, 7.5}, 2018, 23};
+    Student student6 = {303, "Beatriz Fernandes", "Psicologia", {9.5, 9.0, 8.5, 10.0}, 2019, 22};
+    Student student7 = {404, "Rafael Gomes", "Ciencia da Computacao", {8.5, 9.0, 8.0, 9.5}, 2021, 20};
+    Student student8 = {505, "Camila Ribeiro", "Enfermagem", {7.5, 8.0, 7.0, 8.5}, 2020, 21};
+    Student student9 = {606, "Felipe Alves", "Fisica", {6.5, 7.0, 6.0, 7.5}, 2018, 24};
+    Student student10 = {707, "Juliana Martins", "Quimica", {8.0, 8.5, 9.0, 8.5}, 2019, 22};
+
+    students[(*v_position)++] = student1;
+    students[(*v_position)++] = student2;
+    students[(*v_position)++] = student3;
+    students[(*v_position)++] = student4;
+    students[(*v_position)++] = student5;
+    students[(*v_position)++] = student6;
+    students[(*v_position)++] = student7;
+    students[(*v_position)++] = student8;
+    students[(*v_position)++] = student9;
+    students[(*v_position)++] = student10;
 }
 
