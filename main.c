@@ -1,22 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MAX_STUDENTS 40
+#define NUM_GRADES 4
+
 typedef struct {
     int id;
     char name[50];
     char course[50];
-    float grades[4];
+    float grades[NUM_GRADES];
     int enrollmentYear;
     int age;
 } Student;
 
-void clear() {
-    #ifdef _WIN32
-        system("cls");
-    #else 
-        system("clear");
-    #endif
-}
+/**
+ * @brief Clears the terminal/console screen in a cross-platform manner
+ */
+void clear();
 
 int main() {
     int opcao;
@@ -54,4 +54,13 @@ int main() {
 
     printf("C-Data-Structures");
     return 0;
+}
+
+
+void clear() {
+    #ifdef _WIN32
+        system("cls");
+    #else 
+        system("clear");
+    #endif
 }
