@@ -48,6 +48,16 @@ void displayStudent(Student student);
  */
 void listAllStudents(Student *students, int v_position);
 
+/**
+ * @brief Retrieves a student from the array by their ID
+ * 
+ * @param id The ID of the student to search for
+ * @param students Pointer to the array of Student structures
+ * @param v_position The number of valid students in the array
+ * @return The Student structure if found, or a Student with id=0 if not found
+ */
+Student getStudentById(int id, Student *students, int v_position);
+
 int main() {
     int option; 
     int v_position = 0; // control students vector position
@@ -69,15 +79,28 @@ int main() {
             case 1:
                 if (v_position < MAX_STUDENTS) {
                     printf("\n#Cadastro de novo aluno\n");
-                    Student new_student = createStudent(&students, &v_position);
-                    displayStudent(new_student);
+                    displayStudent(
+                        createStudent(students, &v_position)
+                    );
                 } else printf("\nNao a espaco para cadastrar novos alunos");
                 break;
             case 2:
                 printf("\n#Lista todos alunos\n");
                 listAllStudents(students, v_position);
                 break;
-            case 3:
+            case 3: {
+                int id;
+                printf("\nBuscar aluno por RA\n");
+                printf("RA: ");
+                scanf("%d", &id);
+                Student foundStudent = getStudentById(id, students, v_position);
+                if (foundStudent.id != 0) {
+                    displayStudent(foundStudent);
+                } else {
+                    printf("\nAluno com RA %d nao encontrado.\n", id);
+                }
+                break;
+            }
             case 4:
             case 5:
             case 6:
@@ -146,5 +169,15 @@ void listAllStudents(Student *students, int v_position) {
     for (int i = 0; i < v_position; i++) {
         displayStudent(students[i]);
     }
+}
+
+Student getStudentById(int id, Student *students, int v_position) {
+    for (int i = 0; i < v_position; i++) {
+        if(students[i].id == id)
+            return students[i];
+    }
+    // Return a student with id = 0 to indicate not found
+    Student notFound = {0};
+    return notFound;
 }
 
