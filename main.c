@@ -84,6 +84,16 @@ float averageStudentGrade(Student student);
  */
 Student getHighestAverageGradeStudent(Student *students, int v_position);
 
+/**
+ * Compute the average of all students' average grades.
+ *
+ * @param students Pointer to an array of Student objects.
+ * @param v_position Number of students in the array. 
+ * @return The mean of averageStudentGrade() for each student
+ */
+float getAverageAllStudents(Student *students, int v_position);
+
+
 int main() {
     int option; 
     int v_position = 0; // control students vector position
@@ -133,9 +143,17 @@ int main() {
                     displayStudent(getHighestAverageGradeStudent(students, v_position));
                 else
                     printf("Nenhum aluno cadastrado");
-                break;
+                    break;
             case 5:
+                printf("\nMedia das media de todos alunos\n");
+                if (v_position > 0)
+                    printf("Media de todos estudantes: %.1f",getAverageAllStudents(students, v_position));
+                else
+                    printf("Nenhum aluno cadastrado");
+                break;
             case 6:
+
+                break;
             case 7:
                 printf("Saindo...");
                 return 0;
@@ -262,3 +280,10 @@ Student getHighestAverageGradeStudent(Student *students, int v_position) {
     return students[highestAverageIndex];
 }
 
+float getAverageAllStudents(Student *students, int v_position) {
+    float sum = 0.0;
+    for (int i = 0; i < v_position; i++) {
+        sum += averageStudentGrade(students[i]);
+    }
+    return sum / (float)v_position;
+}
