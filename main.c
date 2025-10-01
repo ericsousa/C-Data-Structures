@@ -76,6 +76,15 @@ void generateTestData(Student *students, int *v_position);
 float averageStudentGrade(Student student);
 
 
+/**
+ * Return the student with the highest average among the first v_position entries.
+ *
+ * @param students  Array of Student entries (assumed non-NULL).
+ * @param v_position Number of entries to consider (assumed > 0).
+ * @return          Student with the highest average among the specified entries.
+ */
+Student getHighestAverageGradeStudent(Student *students, int v_position);
+
 int main() {
     int option; 
     int v_position = 0; // control students vector position
@@ -120,6 +129,9 @@ int main() {
                 break;
             }
             case 4:
+                printf("\nAluno com mairo media:\n");
+                displayStudent(getHighestAverageGradeStudent(students, v_position));
+                break;
             case 5:
             case 6:
             case 7:
@@ -233,5 +245,18 @@ float averageStudentGrade(Student student) {
         average += student.grades[i];
     }
     return average / NUM_GRADES;
+}
+
+Student getHighestAverageGradeStudent(Student *students, int v_position) {
+    int highestAverageIndex = 0;
+    float highestAverage = averageStudentGrade(students[0]);
+    for (int i = 0; i < v_position; i++) {
+        float average = averageStudentGrade(students[i]);
+        if (average > highestAverage) {
+            highestAverage = average;
+            highestAverageIndex = i;
+        }
+    }
+    return students[highestAverageIndex];
 }
 
