@@ -75,7 +75,6 @@ void generateTestData(Student *students, int *v_position);
  */
 float averageStudentGrade(Student student);
 
-
 /**
  * Return the student with the highest average among the first v_position entries.
  *
@@ -130,7 +129,10 @@ int main() {
             }
             case 4:
                 printf("\nAluno com mairo media:\n");
-                displayStudent(getHighestAverageGradeStudent(students, v_position));
+                if (v_position > 0) 
+                    displayStudent(getHighestAverageGradeStudent(students, v_position));
+                else
+                    printf("Nenhum aluno cadastrado");
                 break;
             case 5:
             case 6:
