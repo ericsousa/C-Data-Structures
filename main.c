@@ -93,6 +93,15 @@ Student getHighestAverageGradeStudent(Student *students, int v_position);
  */
 float getAverageAllStudents(Student *students, int v_position);
 
+/**
+ * Remove the student with the specified id from the students array.
+ *
+ * @param students Pointer to an array of Student objects.
+ * @param id Identifier of the student to remove.
+ * @param v_position Pointer to an integer representing the number of students in the array; will be decremented if deletion succeeds.
+ * @return 1 if a student with the given id was found and removed, 0 if no matching student was found.
+ */
+int deleteStudentById(Student *students, int id, int *v_position);
 
 int main() {
     int option; 
@@ -138,12 +147,12 @@ int main() {
                 break;
             }
             case 4:
-                printf("\nAluno com mairo media:\n");
+                printf("\nAluno com mairo media\n");
                 if (v_position > 0) 
                     displayStudent(getHighestAverageGradeStudent(students, v_position));
                 else
                     printf("Nenhum aluno cadastrado");
-                    break;
+                break;
             case 5:
                 printf("\nMedia das media de todos alunos\n");
                 if (v_position > 0)
@@ -151,9 +160,18 @@ int main() {
                 else
                     printf("Nenhum aluno cadastrado");
                 break;
-            case 6:
-
+            case 6: {
+                int id;
+                printf("\nExcluir Aluno por RA\n");
+                printf("RA: ");
+                scanf("%d", &id);
+                if (deleteStudentById(students, id, &v_position)) {
+                    printf("\nAluno com RA %d excluido com sucesso", id);
+                } else {
+                    printf("\nAluno com RA %d nao foi encontrado", id);
+                }
                 break;
+            }
             case 7:
                 printf("Saindo...");
                 return 0;
@@ -167,10 +185,7 @@ int main() {
                 break;
         }
 
-    } while (option <= 8); 
-
-
-    printf("C-Data-Structures");
+    } while (option != 7); 
     return 0;
 }
 
@@ -286,4 +301,19 @@ float getAverageAllStudents(Student *students, int v_position) {
         sum += averageStudentGrade(students[i]);
     }
     return sum / (float)v_position;
+}
+
+int deleteStudentById(Student *students, int id, int *v_position) {
+    // find student
+    for (int i = 0; i < *v_position; i++) {
+        if (students[i].id == id) {
+            // move subsequent students back
+            for (int j = i; j < *v_position; j++) {
+                students[j] = students[j+1]; // current index receive next student
+            }
+            (*v_position)--; // decrease overall vector count
+            return 1;
+        }
+    }
+    return 0; // no student found
 }
