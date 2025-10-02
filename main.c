@@ -39,7 +39,6 @@ Student createStudent(Student *students, int *v_position);
  */
 void displayStudent(Student student);
 
-
 /**
  * Displays all students in the array up to the specified position.
  * 
@@ -57,7 +56,6 @@ void listAllStudents(Student *students, int v_position);
  * @return The Student structure if found, or a Student with id=0 if not found
  */
 Student getStudentById(int id, Student *students, int v_position);
-
 
 /**
  * generateTestData - Populate an array of Student with sample records.
@@ -205,13 +203,11 @@ Student createStudent(Student *students, int *v_position) {
     scanf(" %[^\n]%*c", students[*v_position].name);
     printf("Curso: ");
     scanf(" %[^\n]%*c", students[*v_position].course);
-	
 	int i;
     for (i = 0; i < NUM_GRADES; i++) {
         printf("Nota %d: ", i+1);
         scanf("%f", &students[*v_position].grades[i]);
     }
-
     printf("Ano de inicio: ");
     scanf("%d", &students[*v_position].enrollmentYear);
     printf("Idade: ");
