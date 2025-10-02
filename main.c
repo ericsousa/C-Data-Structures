@@ -205,8 +205,9 @@ Student createStudent(Student *students, int *v_position) {
     scanf(" %[^\n]%*c", students[*v_position].name);
     printf("Curso: ");
     scanf(" %[^\n]%*c", students[*v_position].course);
-
-    for (int i = 0; i < NUM_GRADES; i++) {
+	
+	int i;
+    for (i = 0; i < NUM_GRADES; i++) {
         printf("Nota %d: ", i+1);
         scanf("%f", &students[*v_position].grades[i]);
     }
@@ -226,7 +227,8 @@ void displayStudent(Student student) {
     printf("\n\nRA: %d", student.id);
     printf("\nNome: %s", student.name);
     printf("\nCurso: %s", student.course);
-    for (int i = 0; i < NUM_GRADES; i++) {
+    int i;
+	for (i = 0; i < NUM_GRADES; i++) {
         printf("\nNota %d: %.1f", i+1, student.grades[i]);
     }
     printf("\nMedia das  notas: %.1f", averageStudentGrade(student));
@@ -235,13 +237,15 @@ void displayStudent(Student student) {
 }
 
 void listAllStudents(Student *students, int v_position) {
-    for (int i = 0; i < v_position; i++) {
+    int i;
+	for (i = 0; i < v_position; i++) {
         displayStudent(students[i]);
     }
 }
 
 Student getStudentById(int id, Student *students, int v_position) {
-    for (int i = 0; i < v_position; i++) {
+    int i;
+	for (i = 0; i < v_position; i++) {
         if(students[i].id == id)
             return students[i];
     }
@@ -276,7 +280,8 @@ void generateTestData(Student *students, int *v_position) {
 
 float averageStudentGrade(Student student) {
     float average = 0;
-    for (int i = 0; i < NUM_GRADES; i++) {
+    int i;
+    for (i = 0; i < NUM_GRADES; i++) {
         average += student.grades[i];
     }
     return average / NUM_GRADES;
@@ -285,7 +290,8 @@ float averageStudentGrade(Student student) {
 Student getHighestAverageGradeStudent(Student *students, int v_position) {
     int highestAverageIndex = 0;
     float highestAverage = averageStudentGrade(students[0]);
-    for (int i = 0; i < v_position; i++) {
+    int i;
+    for (i = 0; i < v_position; i++) {
         float average = averageStudentGrade(students[i]);
         if (average > highestAverage) {
             highestAverage = average;
@@ -297,7 +303,8 @@ Student getHighestAverageGradeStudent(Student *students, int v_position) {
 
 float getAverageAllStudents(Student *students, int v_position) {
     float sum = 0.0;
-    for (int i = 0; i < v_position; i++) {
+    int i;
+    for (i = 0; i < v_position; i++) {
         sum += averageStudentGrade(students[i]);
     }
     return sum / (float)v_position;
@@ -305,10 +312,12 @@ float getAverageAllStudents(Student *students, int v_position) {
 
 int deleteStudentById(Student *students, int id, int *v_position) {
     // find student
-    for (int i = 0; i < *v_position; i++) {
+    int i;
+    for (i = 0; i < *v_position; i++) {
         if (students[i].id == id) {
             // move subsequent students back
-            for (int j = i; j < *v_position; j++) {
+            int j;
+            for (j = i; j < *v_position; j++) {
                 students[j] = students[j+1]; // current index receive next student
             }
             (*v_position)--; // decrease overall vector count
