@@ -1,7 +1,10 @@
 
-# C-Data-Structures
+# Algorithms and Data Structures
 
-This is a core Data Structures project developed in the C language.
+A comprehensive collection of algorithm and data structure implementations with practical applications.
 
-It functions as a basic Student Registry and Gradebook, managing student records using an array. It implements fundamental operations like creating, searching, deleting, and calculating statistical averages.
+## Projects
+
+### Student Registry and Gradebook - Fixed Length
+A foundational student management system that demonstrates core data structure operations. Implemented using fixed-size arrays, it provides functionality for creating, searching, and deleting student records, as well as computing academic statistics and grade averages.
 
